@@ -9,6 +9,12 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { HttpModule } from '@angular/http';
+import { UserServiceProvider } from '../providers/user-service/user-service';
+import { OdooJsonRpc } from "../services/odoojsonrpc";
+import { Utils } from "../services/utils";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +23,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
+
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +37,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler },
+    BarcodeScanner,
+    OdooJsonRpc,
+    Utils,
+    UserServiceProvider
+
   ]
 })
 export class AppModule {}
